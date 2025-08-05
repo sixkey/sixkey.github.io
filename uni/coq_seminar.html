@@ -1,0 +1,68 @@
+<html><head><title>Coq seminár.</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"><img src="/public/cock.png" id="title-image"></div><div id="main-body"><div id="title-nav"><h1>Coq seminár.</h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><p>Relevantná <a href="https://softwarefoundations.cis.upenn.edu/lf-current/Induction.html">kapitola</a> v knihe Logical Foundations.</p>
+<h2 id="osnova">Osnova</h2>
+<ul>
+<li>Kompilovanie a import</li>
+<li>Indukcia</li>
+<li>Dôkazy v dôkazoch</li>
+<li>Formal vs. Informal proofs</li>
+<li>Nat na Bin a späť</li>
+</ul>
+<h3 id="doterajšie-taktiky">Doterajšie taktiky</h3>
+<p>Taktiky, ktoré sme videli v <code>Basics.v</code> a <code>Induction.v</code>.</p>
+<pre class="coq"><code>
+n - mená
+e - výrazy vo funkcionálnom jazyku
+c - taCtics 
+t - typ
+
+simpl
+reflexivity
+rewrite { -&gt;, &lt;- or nothing } c1
+
+intro n1
+intros n1 n2 n3 ... nk
+
+destruct n as [ n1 | n2 | n3 | ... | nk ] (** creates k goals **)
+induction n as [ n1 IHc1 | n2 IHc2 | n3 IHc3 | ... | nk IHck ] (**creates k goals **)
+
+admit
+
+assert ( n : t ) (** creates o new goal **)
+replace e1 with e2 (** creates two goals **)</code></pre>
+<h3 id="ďalšie-taktiky-ktoré-sa-môžu-hodiť">Ďalšie taktiky, ktoré sa môžu hodiť</h3>
+<pre><code>exact e1
+assumption 
+
+try 
+do n c </code></pre>
+<p>Pre ešte viac taktík, pozri <a href="https://coq.inria.fr/refman/coq-tacindex.html">tu</a>.</p>
+<h3 id="commands">Commands</h3>
+<p>Môže sa hodiť <a href="https://coq.inria.fr/refman/proof-engine/vernacular-commands.html#coq:cmd.Search">Search</a>, ktorý umožňuje relatívne šikovne hladať tvrdenia v kontexte.</p>
+<p><a href="attic/ntbbtn">Riešenie</a> k <code>nat_to_bin</code> a <code>bin_to_nat</code> z <code>Basics.v</code>.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>Inductive nat : Type :=
+  | O
+  | S (n : nat).
+
+Definition is_zero (n : nat) : bool := 
+  match n with 
+  | O =&gt; true
+  | S n&#39; =&gt; false 
+  end.
+
+Fixpoint plus (n : nat) (m : nat) : nat :=
+  match n with
+  | O =&gt; m
+  | S n&#39; =&gt; S (plus n&#39; m)
+  end.
+
+Notation &quot;x + y&quot; := (plus x y) (at level 50, left associativity) : nat_scope.
+
+(** Theorem, Lemma, Fact, Example **)
+Theorem add_0_l : forall n:nat, O + n = n.
+Proof.
+  intros n.
+  simpl. 
+  reflexivity.
+Qed.
+(** Prípadne Admitted. alebo Abort. **)</code></pre></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>

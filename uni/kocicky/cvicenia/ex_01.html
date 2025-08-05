@@ -1,0 +1,35 @@
+<html><head><title></title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"></div><div id="main-body"><div id="title-nav"><h1></h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><p>Nech kategória C je <span class="math inline">\((\mathbb{R}, (+n), (\cdot))\)</span> a kategória D je <span class="math inline">\((\mathbb{R}^+, (\times n), (\cdot))\)</span>, potom obe kategórie reprezentujú grupu. Vieme povedať, že v <span class="math inline">\(C\)</span> a v <span class="math inline">\(D\)</span> je jeden objekt, nazvyme tieto objekty <span class="math inline">\(c\)</span> a <span class="math inline">\(d\)</span>. Vieme, že <span class="math inline">\(id_c = (+0)\)</span>, a <span class="math inline">\(id_d = (\times 1)\)</span>.</p>
+<p>Na chvíľu uvážme, že miesto funkcií <span class="math inline">\((+n)\)</span> a <span class="math inline">\((\times m)\)</span> budeme uvažovať len <span class="math inline">\(n\)</span> a <span class="math inline">\(m\)</span>. Funkcia, ktoré potom budú zobrazovať morfizmy budú <span class="math inline">\(F : (+n) \mapsto (\times m)\)</span> a <span class="math inline">\(f : n \mapsto m\)</span>.</p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+ \text{F } (+0) &amp;=  \text{F } id_c = id_{ \text{F } c} = id_d = (\times 1) \\
+f(0) &amp;= 1
+\end{aligned}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+ \text{F } ((+a) \cdot (+b)) &amp;=  \text{F } (+(a + b)) =  \text{F } (+ a) \cdot  \text{F } (+ b) \\
+f(a + b) &amp;= f(a) \times f(b)
+\end{aligned}
+\end{equation}\]</span></p>
+<p>Potom si všimnime, že <span class="math inline">\(f\)</span> je len <span class="math inline">\(exp\)</span>. Opačne:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+ \text{G } (\times 1) &amp;=  \text{G } id_d = id_{ \text{G } d} = id_c = (+ 0) \\
+g(1) &amp;= 0
+\end{aligned}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+ \text{G } ((\times a) \cdot (\times b)) &amp;=  \text{G } (\times (a \times b)) =  \text{G } (\times a) \cdot  \text{G } (\times b) \\
+g(a \times b) &amp;= g(a) + g(b)
+\end{aligned}
+\end{equation}\]</span></p>
+<p>Potom si všimnime, že <span class="math inline">\(g\)</span> je len <span class="math inline">\(log\)</span>. Pre príklad, <span class="math inline">\(F\)</span> zobrazuje <span class="math inline">\((+a)\)</span> na <span class="math inline">\((\times \exp a)\)</span>.</p>
+<p>V haskell verzií, kde morfizmy reprezentujeme ako funkcie (Uvedomme si, že toto nie je jediný spôsob) <code>Double -&gt; Double</code> potom bude <em>fmap</em> vyzerať následovne:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode hs"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fmap</span> h <span class="ot">=</span> \x <span class="ot">-&gt;</span> x <span class="op">*</span> <span class="fu">exp</span> ( h <span class="dv">0</span> ) </span></code></pre></div>
+<p><code>h 0</code> vybaluje z funkcie <span class="math inline">\((+n)\)</span> jeho <span class="math inline">\(n\)</span>.</p>
+<p>Rovnako to funguje aj opačným smerom s funkciou <span class="math inline">\(log\)</span>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode hs"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fmap</span> h <span class="ot">=</span> \x <span class="ot">-&gt;</span> x <span class="op">+</span> <span class="fu">log</span> ( h <span class="dv">1</span> )</span></code></pre></div>
+<p>Pri pointfree som neuvážil, že <em>fmap</em> nie je len <em>f</em>. Pointfree verzia ale existuje a vyzerá následovne:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode hs"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fmap</span> <span class="ot">=</span> (<span class="op">*</span>) <span class="op">.</span> <span class="fu">exp</span> <span class="op">.</span> ( <span class="fu">flip</span> ( <span class="op">$</span> ) ) <span class="dv">0</span></span></code></pre></div></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>

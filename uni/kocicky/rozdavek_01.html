@@ -1,0 +1,94 @@
+<html><head><title></title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"></div><div id="main-body"><div id="title-nav"><h1></h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><h2 id="seminár-1-úvod-do-teórie-kategórií">Seminár 1: Úvod do teórie kategórií</h2>
+<h3 id="kategória---co-a-circ">Kategória - <span class="math inline">\(C(O, A, \circ)\)</span>:</h3>
+<ul>
+<li><span class="math inline">\(O\)</span> - kolekcia objektov</li>
+<li><span class="math inline">\(A\)</span> - kolekcia <em>arrows</em> - morfizmy medzi objektami z <span class="math inline">\(O\)</span></li>
+<li><span class="math inline">\(\circ\)</span> - binárne skladanie morfizmov
+<ul>
+<li>musí platiť asociativita - <span class="math inline">\((h \circ g) \circ f = h \circ (g \circ f) = h \circ g \circ f\)</span></li>
+<li>identita <span class="math inline">\(id\)</span> je voči operátoru neutrálna aj zľava aj sprava, nech <span class="math inline">\(f : a \to b\)</span> potom <span class="math inline">\(f \circ id_a = id_b \circ f = f\)</span></li>
+</ul></li>
+<li><span class="math inline">\(id\)</span> / <span class="math inline">\(1\)</span> - identické morfizmy pre všetky objekty (<span class="math inline">\(id_a\)</span> - identický morfizmus pre <span class="math inline">\(a \in O\)</span>)</li>
+<li><span class="math inline">\(Hom(a, b)\)</span> - kolekcia morfizmov <strong>z</strong> <span class="math inline">\(a\)</span> <strong>do</strong> <span class="math inline">\(b\)</span></li>
+</ul>
+<h3 id="kategórie">Kategórie</h3>
+<ul>
+<li><em>Malá</em>: aj <span class="math inline">\(O\)</span> aj <span class="math inline">\(A\)</span> sú množiny</li>
+<li><em>Veľká</em>: nie malá</li>
+<li><em>Lokálne malá</em>: pre všetky objekty <span class="math inline">\(a, b \in C\)</span> je <span class="math inline">\(Hom(a, b)\)</span> množina</li>
+<li><em>Riedka (thin)</em>: pre všetky objekty <span class="math inline">\(a, b \in C\)</span> platí <span class="math inline">\(|Hom(a, b)| \in \{0, 1\}\)</span></li>
+<li><em>Voľná (free)</em>: kategória generovaná z orientovaného grafu pomocou voľnej konštrukcie (doplnenie identít a zložením hrán - pre každú cestu z <span class="math inline">\(u\)</span> do <span class="math inline">\(v\)</span> existuje hrana reprezentujúca túto cestu)</li>
+</ul>
+<h3 id="špeciálne-objekty">Špeciálne objekty</h3>
+<ul>
+<li><em>iniciálny objekt</em>
+<ul>
+<li><span class="math inline">\(a\)</span> je iniciálny objekt <span class="math inline">\(\iff \forall b \in O_C \ldotp\exists! m \in A_C \ldotp m: a \rightarrow b\)</span></li>
+<li>do každého objektu kategórie vedie unikátna šípka</li>
+<li>v kategórii “typov” (Set) si môžeme predstaviť <code>void</code>, pretože pre každý iný typ <code>T</code> existuje funkcia <code>asburd : void -&gt; T</code></li>
+<li>unikátny až na unikátny izomorfizmus</li>
+</ul></li>
+<li><em>terminálny objekt</em> (duálny k iniciálnemu objektu)
+<ul>
+<li><span class="math inline">\(a\)</span> je terminálny objekt <span class="math inline">\(\iff \forall b \in O_C \ldotp\exists! m \in A_C \ldotp m : b \rightarrow a\)</span></li>
+<li>z každého objektu kategórie vedie unikátna šípka</li>
+<li>v kategórii “typov” si môžeme predstaviť <code>unit</code>, pretože pre každý iný typ existuje funkcia <code>unit : T -&gt; ()</code></li>
+<li>unikátny až na unikátny izomorfizmus</li>
+</ul></li>
+</ul>
+<p><em>Opačná kategória</em> <span class="math inline">\(C^{op}\)</span> - Kategória s opačnými morfizmami (od <span class="math inline">\(C\)</span>). Môžme hovoriť o duálnych pojmoch (napr. terminálny objekt je iniciálny v opačnej kategórii, mono je duálne s epi, atď).</p>
+<h3 id="špeciálne-morfizmy">Špeciálne morfizmy</h3>
+<ul>
+<li><p><em>monomorfizmus (mono)</em></p>
+<ul>
+<li><span class="math inline">\(f : a \to b \in C\)</span> je monomorfizmus <span class="math inline">\(\iff\)</span></li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(\forall x \in C \ldotp \forall g, h : x \to a \in C \ldotp \{ f \circ g = f \circ h \implies g = h \}\)</span></p>
+</blockquote>
+<ul>
+<li>v <strong>Set</strong> je morfizmus <span class="math inline">\(f\)</span> mono <span class="math inline">\(\iff\)</span> funkcia <span class="math inline">\(f\)</span> je injektívna</li>
+</ul></li>
+<li><p><em>epimorfizmus (epi)</em> (duálny k monomorfizmu)</p>
+<ul>
+<li><span class="math inline">\(f : a \to b \in C\)</span> je epimorfizmus <span class="math inline">\(\iff\)</span></li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(\forall x \in C \ldotp \forall g, h : b \to x \in C \ldotp \{ g \circ f = h \circ f \implies g = h \}\)</span></p>
+</blockquote>
+<ul>
+<li>v <strong>Set</strong> je morfizmus <span class="math inline">\(f\)</span> epi <span class="math inline">\(\iff\)</span> funkcia <span class="math inline">\(f\)</span> je surjektívna</li>
+</ul></li>
+<li><p><em>izomorfizmus</em></p>
+<blockquote>
+<p><span class="math inline">\(f : a \to b \in C\)</span> je izomorfizmus <span class="math inline">\(\iff\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(\exists g : b \to a \in C \ldotp \{ g \circ f = id_a \land f \circ g = id_b \}\)</span></p>
+</blockquote></li>
+<li><p><em>endomorfizmus</em></p>
+<blockquote>
+<p><span class="math inline">\(f : a \to a\)</span></p>
+</blockquote></li>
+<li><p><em>automorfizmus</em></p>
+<blockquote>
+<p>endomorfizmus + izomorfizmus</p>
+</blockquote></li>
+</ul>
+<h3 id="príklady-kategórií">Príklady kategórií:</h3>
+<ul>
+<li><strong>0</strong> - kategória bez prvkov a morfizmov</li>
+<li><strong>1</strong> - kategória s práve jedným prvkom a jeho identitou</li>
+<li><strong>2</strong> - kategória s práve dvoma prvkami, medzi ktorými sú morfizmy</li>
+<li><strong>Set</strong> - kategória množín a funkcií</li>
+<li><strong>Grp</strong> - kategória grúp a homomorfizmov</li>
+<li><strong>Cat</strong> - kategória malých kategórií a funktorov</li>
+<li><em>Order</em> - kategória usporiadania s <span class="math inline">\(\le\)</span></li>
+<li><em>Voľná kategória</em> - konštrukcia z orientovaného grafu</li>
+<li><em>Monoid ako kategória</em> - kategória s jedným objektom a endomorfizmami</li>
+<li><em>Grupa ako kategória</em> - kategória s jedným objektom a automorfizmami</li>
+<li><strong>Hask</strong> - “kategória typov v jazyku Haskell a funkcií”</li>
+</ul>
+<h3 id="zdroje">Zdroje:</h3>
+<p>Milewski, B., 2022. Category Theory for Programmers: The Preface (Part One: 1-4). [online] Bartosz Milewski’s Programming Cafe. Available at: <a href="https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/" class="uri">https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/</a> [Accessed 3 March 2022].</p>
+<p>Buurlage, J-W, 2022. Categories and Haskell (Chapter 1). [online] Github. Available at: <a href="https://github.com/jwbuurlage/category-theory-programmers/" class="uri">https://github.com/jwbuurlage/category-theory-programmers/</a> [Accessed 3 March 2022].</p></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>

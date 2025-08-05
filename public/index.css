@@ -1,0 +1,276 @@
+@font-face {
+    font-family: 'Lora';
+    src: url('/~xkucerak/public/fonts/Lora-VariableFont_wght.ttf');
+}
+
+html, body
+{
+    font-family: 'Lora';
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.1em;
+}
+
+#root
+{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    min-height: 100vh;
+}
+
+#content-root
+{
+    width: 100%;
+    padding-top: 2em;
+}
+
+#title-image
+{
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#left-wing
+{
+    width: 20%;
+    position: fixed;
+}
+
+p 
+{
+    text-align: justify;
+}
+
+#main-body
+{
+    width: 60%;
+    margin: auto;
+    padding-bottom: 10em;
+}
+
+#nav
+{
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    gap: 0.8em;
+    list-style-type: none;
+
+}
+
+#nav li 
+{
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+a 
+{
+    text-decoration: none;
+}
+
+#title-nav
+{
+    padding-bottom: 0.5em;
+}
+
+#title-nav h1 
+{
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.quote 
+{
+    text-align: center;
+}
+
+.comment
+{
+    color: #555555;
+}
+
+.image-lib
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.image-lib-tile 
+{
+    width: 33%;
+    position: relative;
+}
+
+.image-lib-tile-bg
+{
+    width: 100%;
+    z-index: 1;
+}
+
+.image-lib-tile-fg
+{
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+
+    text-align: center;
+}
+
+.lib-title
+{
+    margin-bottom: 0.3em;
+}
+
+.list-lib
+{
+}
+
+.list-lib-tile 
+{
+    margin-bottom: 0.5em;
+    padding-left: 0.4em;
+    padding-bottom: 0.3em;
+    padding-top: 0.3em;
+    border-style: solid;
+    border-radius: 0.2em;
+    border-width: 0px 0px 0px 1px;
+}
+
+.tile-title 
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.tile-desc
+{
+    padding: 0px;
+    margin: 0px;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+@media screen and (max-width: 70rem) {
+  #main-body {
+      width: 75%;
+      margin-right: 5%;
+  }
+}
+
+@media screen and (max-width: 60rem) {
+  #left-wing {
+    display: none;
+  }
+  #main-body {
+      width: 90%;
+  }
+}
+
+.kw {
+    color: #7a147aff;
+}
+
+.fu {
+    color: green;
+}
+
+.dt {
+    color: 2062d0;
+}
+
+.ot {
+    color: black;
+}
+
+#teaching table tr td {
+    width:auto;
+}
+
+.col-2 {
+    width: 16.6%;
+}
+
+.col-10 {
+    width: 83.3%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.nopadding {
+    padding: 0px !important;
+}
+
+.div-table {
+    width:100%;
+}
+
+footer 
+{
+    background-color: #eeeeee;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+}
+
+.footer-text 
+{
+    display: flex;
+    width: auto;
+    justify-content: right;
+    padding-right: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+}
+
+.footer-text div 
+{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.me-pic
+{
+    width: 100%;
+}
+
+#deck
+{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card
+{
+    position: relative;
+    margin: auto;
+    height: 16em;
+    margin-bottom: 1em;
+}
+
+.card-front
+{
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.card-back
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.card-hide 
+{
+    opacity: 0;
+}

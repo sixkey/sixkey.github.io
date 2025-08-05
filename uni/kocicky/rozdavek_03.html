@@ -1,0 +1,78 @@
+<html><head><title></title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"></div><div id="main-body"><div id="title-nav"><h1></h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><h2 id="seminář-3-produkty-koprodukty-a-algebraické-datové-typy-adt">Seminář 3: Produkty, koprodukty a algebraické datové typy (ADT)</h2>
+<h3 id="produkty">Produkty</h3>
+<ul>
+<li>Objekt <span class="math inline">\(c \in \mathcal{C}\)</span> s projekcemi <span class="math inline">\(p_1: c \to a\)</span> a <span class="math inline">\(p_2: c \to b\)</span> je produkt objektů <span class="math inline">\(a\)</span> a <span class="math inline">\(b \Longleftrightarrow \\ \forall x \in \mathcal{C} . \forall f: x \to a, g: x \to b . \exists! q: x \to c .\)</span> <span class="math inline">\((f = p_1 \circ q \land g = p_2 \circ q)\)</span></li>
+<li><span class="math inline">\(q\)</span> <em>faktorizuje</em> <span class="math inline">\(f\)</span> a <span class="math inline">\(g \Longleftrightarrow f = p_1 \circ q \land g = p_2 \circ q\)</span></li>
+<li><span class="math inline">\(q\)</span> je <em>univerzální mapování</em></li>
+</ul>
+<h4 id="příklady">Příklady</h4>
+<ul>
+<li>V <strong>Set</strong> <em>kartézský součin</em></li>
+<li>V <strong>Poset</strong> (částečně uspořádaná množina) <em>infimum</em></li>
+</ul>
+<h4 id="haskell">Haskell</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> (,) a b <span class="ot">=</span> (,) a b</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fst</span> (x, _) <span class="ot">=</span> x <span class="co">-- p_1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">snd</span> (_, y) <span class="ot">=</span> y <span class="co">-- p_2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ot">q ::</span> (j <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> (j <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> j <span class="ot">-&gt;</span> (,) a b</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>q f g  x <span class="ot">=</span> (f x, g x)</span></code></pre></div>
+<h2 id="koprodukty-sumy">Koprodukty (sumy)</h2>
+<ul>
+<li>Objekt <span class="math inline">\(c \in \mathcal{C}\)</span> se zahrnutími (<em>inkluzemi</em>) <span class="math inline">\(i_1: c \gets a\)</span> a <span class="math inline">\(i_2: c \gets b\)</span>
+je koprodukt objektů <span class="math inline">\(a\)</span> a <span class="math inline">\(b \Longleftrightarrow \\ \forall x \in \mathcal{C} . \forall f: x \gets a, g: x \gets b . \exists! q: x \gets c .\)</span> <span class="math inline">\((f = q \circ i_1 \land g = q \circ i_2)\)</span></li>
+</ul>
+<h3 id="příklady-1">Příklady</h3>
+<ul>
+<li>V <strong>Set</strong> <em>disjunktní sjednocení</em></li>
+<li>V <strong>Poset</strong> (částečně uspořádaná množina) <em>supremum</em></li>
+</ul>
+<h3 id="haskell-1">Haskell</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Either</span> a b <span class="ot">=</span> <span class="dt">Left</span> a <span class="op">|</span> <span class="dt">Right</span> b</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- i_1 = Left</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- i_2 = Right</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ot">q ::</span> (a <span class="ot">-&gt;</span> j) <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> j) <span class="ot">-&gt;</span> <span class="dt">Either</span> a b <span class="ot">-&gt;</span> j</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>q f _ (<span class="dt">Left</span> x)  <span class="ot">=</span> f x</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>q _ g (<span class="dt">Right</span> x) <span class="ot">=</span> g x</span></code></pre></div>
+<h3 id="bifunktory">Bifunktory</h3>
+<h4 id="produkt-kategorií-mathcalc-times-mathcald">Produkt kategorií <span class="math inline">\(\mathcal{C} \times \mathcal{D}\)</span></h4>
+<p>Skládá se z</p>
+<ul>
+<li><span class="math inline">\(O_{\mathcal{C} \times \mathcal{D}} = \{(c, d) | c \in O_\mathcal{C}, d \in O_\mathcal{D}\}\)</span></li>
+<li><span class="math inline">\(A_{\mathcal{C} \times \mathcal{D}} = \{(f, g) | f: a \to c \in A_\mathcal{C}, g: b \to d \in A_\mathcal{D}\}\)</span></li>
+</ul>
+<p>Musí platit</p>
+<ul>
+<li><em>identita</em> pro <span class="math inline">\((a, b)\)</span> je <span class="math inline">\((id_a, id_b)\)</span></li>
+<li><span class="math inline">\((f, h) \circ (g, k) \equiv (f \circ g, h \circ k)\)</span></li>
+</ul>
+<h4 id="bifunktor-f-funktor-z-produktu-kategorií-f-mathcalc-times-mathcald-to-mathcale">Bifunktor <span class="math inline">\(F\)</span> = funktor z produktu kategorií <span class="math inline">\(F: \mathcal{C} \times \mathcal{D} \to \mathcal{E}\)</span></h4>
+<p>V každé kategorii <span class="math inline">\(\mathcal{C}\)</span>, kde pro každé dva objekty <span class="math inline">\(a\)</span> a <span class="math inline">\(b\)</span> můžemem najít jejich produkt, existuje bifunktor <span class="math inline">\(\times\)</span> (zapisován infixově). <span class="math display">\[\begin{align*}
+\times&amp;: \mathcal{C} \times \mathcal{C} \to \mathcal{C}\\
+      &amp;: (a, b) \mapsto a \times b\\
+      &amp;: (f: a \to a&#39;, g: b \to b&#39;) \mapsto (f \times g: a \times b \to a&#39; \times b&#39;)
+\end{align*}\]</span></p>
+<h4 id="bifunktory-v-haskellu">Bifunktory v Haskellu</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Bifunctor</span> f <span class="kw">where</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  bimap ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (c <span class="ot">-&gt;</span> d) <span class="ot">-&gt;</span> f a c <span class="ot">-&gt;</span> f b d</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  bimap g h <span class="ot">=</span> first g <span class="op">.</span> second h</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ot">  first ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a c <span class="ot">-&gt;</span> f b c</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  first g <span class="ot">=</span> bimap g <span class="fu">id</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ot">  second ::</span> (c <span class="ot">-&gt;</span> d) <span class="ot">-&gt;</span> f a c <span class="ot">-&gt;</span> f a d</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  second h <span class="ot">=</span> bimap <span class="fu">id</span> h</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="ot">{-# MINIMAL bimap | first, second #-}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Bifunctor</span> (,) <span class="kw">where</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  bimap g h (x, y) <span class="ot">=</span> (g x, h y)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Bifunctor</span> <span class="dt">Either</span> <span class="kw">where</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  bimap g _ (<span class="dt">Left</span> x)  <span class="ot">=</span> <span class="dt">Left</span>  (g x)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  bimap _ h (<span class="dt">Right</span> y) <span class="ot">=</span> <span class="dt">Right</span> (h y)</span></code></pre></div>
+<h3 id="adt-a-funktory">ADT a funktory</h3>
+<ul>
+<li>Pro každý ADT umí GHC instancovat funktor s pomocí rozšíření (od GHC 9.2.1 bez rozšíření)</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE DerivingFunctor #-}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Example</span> a <span class="ot">=</span> <span class="dt">Ex</span> a <span class="dt">Int</span> (<span class="dt">Example</span> a) (<span class="dt">Example</span> <span class="dt">Int</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">deriving</span> (<span class="dt">Functor</span>)</span></code></pre></div></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>

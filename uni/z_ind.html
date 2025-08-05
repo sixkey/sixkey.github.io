@@ -1,0 +1,33 @@
+<html><head><title>O indukcii na celých číslach</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"><img src="/public/index.png" id="title-image"></div><div id="main-body"><div id="title-nav"><h1>O indukcii na celých číslach</h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><p>Tento post slúži ako odpoveď na nasledujúcu otázku z cvičenia MZI:</p>
+<ol type="1">
+<li>Môžeme urobiť indukciu na celých číslach?</li>
+<li>Čo by to vôbec znamenalo a ako by to fungovalo?</li>
+</ol>
+<p><em>Pre študentov MZI: obsah tohto príspevku je rozhodne mimo záber predmetu MZI a veci ako usporiadanie sú definované neskôr (dobré usporiadanie dokonca afaik nikdy); tento príspevok teda čítajte na vlastné riziko.</em></p>
+<p>Na prirodzených číslach vieme zaviesť indukciu ako platnosť nasledujúcej formule:</p>
+<p><span class="math display">\[
+    [ \phi(0) \land \forall k \in \mathbb{N} . \phi(k) \implies \phi(k + 1) ] \implies [ \forall n \in \mathbb{N} . \phi(n) ]
+\]</span></p>
+<p>Mohli by sme zaviesť niečo podobné na celých číslach; napríklad ako formulu</p>
+<p><span class="math display">\[
+    [ \phi(0) \land \forall k \in \mathbb{Z^+} . \phi(k - 1) \implies \phi(k) \land \forall k \in \mathbb{Z^-} . \phi(k + 1) \implies \phi(k) ] \implies [ \forall z \in \mathbb{Z} . \phi(z) ]?
+\]</span></p>
+<p>Mohli.</p>
+<p><em>Dôkaz.</em> Uvážme nasledujúce usporiadanie <span class="math inline">\(\prec\)</span> celých čísel:</p>
+<p><span class="math display">\[
+    0 \prec -1 \prec 1 \prec -2 \prec 2 \prec -3 \prec 3 \prec ...
+\]</span></p>
+<p>Všimnime si, že pre <span class="math inline">\(a, b \in \mathbb{Z}\)</span>, ak <span class="math inline">\(|a| &lt; |b|\)</span> potom <span class="math inline">\(a \prec b\)</span>. Pre ľubovoľnú neprázdnu podmnožinu <span class="math inline">\(A \subseteq \mathbb{Z}\)</span> dokážeme voči tomuto usporiadaniu nájsť najmenší prvok: zoberieme <span class="math inline">\(z\)</span> s najmenšou absolútnou hodnotou a v prípade, že sú také dve (napr. <span class="math inline">\(-3, 3\)</span> v <span class="math inline">\(\{-3, 3, 4, 5\}\)</span>), zoberieme to záporné. Usporiadanie, v ktorom sme pre každú neprázdnu podmnožinu schopný nájsť najmenší prvok, nazývame <em>dobré usporiadanie</em> (toto usporiadanie rozhodne nie je jediné dobré na celých číslach a v obecnosti môžu tieto usporiadania vyzerať “exotickejšie”, napríklad <span class="math inline">\(0 \prec&#39; 1 \prec&#39; 2 \prec&#39; ... \prec&#39; -1 \prec&#39; -2 \prec&#39; -3 \prec&#39; ...\)</span>).</p>
+<p>Uvážme, že by “indukcia” na celých číslach neplatila. Potom ale platia predpoklady, teda platia formule</p>
+<ol type="1">
+<li><span class="math inline">\(\phi(0)\)</span>,</li>
+<li><span class="math inline">\(\forall k \in \mathbb{Z^+} . \phi(k - 1) \implies \phi(k)\)</span>,</li>
+<li>a <span class="math inline">\(\forall k \in \mathbb{Z^-} . \phi(k + 1) \implies \phi(k)\)</span>,</li>
+</ol>
+<p>no zároveň neplatí záver, teda existuje <span class="math inline">\(z \in \mathbb{Z}\)</span> pre ktoré platí <span class="math inline">\(\neg \phi(z)\)</span>. Uvážme množinu <span class="math inline">\(A\)</span> takých <span class="math inline">\(z\)</span>. Taká množina je z porušenia záveru neprázdna a teda má v našom <em>dobrom</em> usporiadaní <span class="math inline">\(\prec\)</span> najmenší prvok <span class="math inline">\(z&#39;\)</span>. Potom ale nastane jeden z týchto prípadov:</p>
+<ol type="1">
+<li><span class="math inline">\(z&#39; = 0\)</span>: potom ale <span class="math inline">\(\neg \phi(0)\)</span>, čo je spor s prvým predpokladom, v ktorom <span class="math inline">\(\phi(0)\)</span>.</li>
+<li><span class="math inline">\(z&#39; &gt; 0\)</span>: potom ale obmena druhého predpokladu pre <span class="math inline">\(k = z&#39;\)</span> spolu s <span class="math inline">\(\neg\phi(z&#39;)\)</span> ukazuje, že <span class="math inline">\(\neg\phi(z&#39; - 1)\)</span>, a teda <span class="math inline">\(z&#39; - 1 \in A\)</span>. <span class="math inline">\(z&#39; - 1\)</span> má ale zjavne menšiu absolútnu hodnotu ako <span class="math inline">\(z&#39; &gt; 0\)</span> a teda je v našom usporiadaní menšie ako <span class="math inline">\(z&#39;\)</span>, teda <span class="math inline">\(z&#39; - 1 \prec z&#39;\)</span>. To je ale spor s tým, že <span class="math inline">\(z&#39;\)</span> je voči <span class="math inline">\(\prec\)</span> najmenšie v <span class="math inline">\(A\)</span>.</li>
+<li><span class="math inline">\(z&#39; &lt; 0\)</span>: potom ale obmena tretieho predpokladu pre <span class="math inline">\(k = z&#39;\)</span> spolu s <span class="math inline">\(\neg\phi(z&#39;)\)</span> ukazuje, že <span class="math inline">\(\neg\phi(z&#39; + 1)\)</span>, a teda <span class="math inline">\(z&#39; + 1 \in A\)</span>. <span class="math inline">\(z&#39; + 1\)</span> má ale zjavne menšiu absolútnu hodnotu ako <span class="math inline">\(z&#39; &lt; 0\)</span> a teda je v našom usporiadaní menšie ako <span class="math inline">\(z&#39;\)</span>, teda <span class="math inline">\(z&#39; + 1 \prec z&#39;\)</span>. To je ale spor s tým, že <span class="math inline">\(z&#39;\)</span> je voči <span class="math inline">\(\prec\)</span> najmenšie v <span class="math inline">\(A\)</span>.</li>
+</ol>
+<p>V každom z prípadov sa teda dostávame do sporu. Nami definovaná “indukcia” na celých číslach teda platí.</p></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>

@@ -1,0 +1,55 @@
+<html><head><title></title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"></div><div id="main-body"><div id="title-nav"><h1></h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><h2 id="seminář-6-adjunkce">Seminář 6: Adjunkce</h2>
+<h3 id="unitcounit-adjunkce">Unit/counit adjunkce</h3>
+Kategorie <span class="math inline">\(\mathcal{C}, \mathcal{D}\)</span>, Funktory <span class="math inline">\(L:\mathcal{D} \to \mathcal{C}\)</span>, <span class="math inline">\(R:\mathcal{C} \to \mathcal{D}\)</span>
+<p>Značení: <span class="math inline">\(L \dashv{} R\)</span></p>
+Pokud existují přirozené transformace:
+Pro tyto transformace platí následující rovnosti:
+<h3 id="hom-set-adjunkce">Hom-Set adjunkce</h3>
+<p>Kategorie <span class="math inline">\(\mathcal{C}, \mathcal{D}\)</span>, Funktory <span class="math inline">\(L:\mathcal{D} \to \mathcal{C}\)</span>, <span class="math inline">\(R:\mathcal{C} \to \mathcal{D}\)</span></p>
+<p><span class="math inline">\(L \dashv{} R \iff Hom_\mathcal{C}(Ld, c) \cong{} Hom_\mathcal{D}(d, Rc)\)</span></p>
+<p><span class="math inline">\(\Phi\)</span> je přirozený isomorfismus mezi HomSety</p>
+<h3 id="adjunkce-unvierzální-šipkou-universal-arrow-adjunction">Adjunkce unvierzální šipkou (Universal arrow adjunction)</h3>
+<p>Kategorie <span class="math inline">\(\mathcal{C}, \mathcal{D}\)</span>, Funktory <span class="math inline">\(L:\mathcal{D} \to \mathcal{C}\)</span>, <span class="math inline">\(R:\mathcal{C} \to \mathcal{D}\)</span></p>
+<p><span class="math inline">\(L \dashv{} R \iff\)</span> existuje přirozená transformace <span class="math inline">\(\eta:I_\mathcal{D} \Rightarrow R \circ L\)</span> taková, že <span class="math inline">\(\forall c \in O_\mathcal{C}, \forall d\in O_\mathcal{D}\)</span> a <span class="math inline">\(\forall f: d \to Rc\)</span> <span class="math inline">\(\exists! g: Ld \to c\)</span>, že následující diagram komutuje:</p>
+<h3 id="ekvivalence-definic">Ekvivalence definic</h3>
+<p>HomSet <span class="math inline">\(\to\)</span> Unit/Counit:</p>
+<ul>
+<li><span class="math inline">\(\eta_d:I_\mathcal{D}\Rightarrow R \circ L d = \Phi_{d, Ld}(I_\mathcal{D}(Ld))\)</span></li>
+<li><span class="math inline">\(\epsilon_c:L \circ R \Rightarrow I_\mathcal{C} = \Phi_{Rc, c}^{-1}(I_\mathcal{C}(Rc))\)</span> </li>
+</ul>
+<p>Universal arrow <span class="math inline">\(\to\)</span> HomSet:</p>
+<ul>
+<li><span class="math inline">\(\Phi_{d,c}:Hom_\mathcal{C}(Ld, c) \to Hom_\mathcal{D}(d, Rc) = (\alpha:Ld \to c) \mapsto R\alpha \circ \eta\)</span> </li>
+</ul>
+<p>Unit/Counit <span class="math inline">\(\to\)</span> Universal arrow:</p>
+<ul>
+<li><span class="math inline">\(R(\Delta) \circ \eta_c=f\)</span></li>
+<li><span class="math inline">\(\Delta = \epsilon_c \circ Lf= g\)</span></li>
+</ul>
+<h3 id="unikátnost-adjunkcí-až-na-přirozený-isomorfismus">Unikátnost adjunkcí (až na přirozený isomorfismus)</h3>
+<p>Nechť <span class="math inline">\(L,L&#39;: D \to c\)</span> a <span class="math inline">\(R: C \to D\)</span> a <span class="math inline">\(L \dashv{} R, L&#39; \dashv{} R\)</span> s přirozenými bijekcemi <span class="math inline">\(\Phi_{d,c}\)</span> a <span class="math inline">\(\Phi_{d, c}&#39;\)</span>. Pak pro libovolné <span class="math inline">\(d \in O_\mathcal{D}\)</span> platí, že:</p>
+<blockquote>
+<blockquote>
+<p><span class="math inline">\(Hom_\mathcal{C}(Ld,-) \cong{} Hom_\mathcal{D}(c, R-)\cong{} Hom_\mathcal{C}(L&#39;d, -)\)</span></p>
+</blockquote>
+</blockquote>
+<p>Z toho jde pomocí Yonneda embedding ukázat, že <span class="math inline">\(F\)</span> a <span class="math inline">\(F&#39;\)</span> jsou přirozeně isomorfní.</p>
+<h3 id="příklady">Příklady</h3>
+<h4 id="exponenciál-ccc-popsaný-adjunkcí">Exponenciál CCC popsaný adjunkcí:</h4>
+<ul>
+<li><span class="math inline">\(L=z \to z \times a\)</span></li>
+<li><span class="math inline">\(R = b \to a \Rightarrow b\)</span></li>
+<li>Unit: <span class="math inline">\(\eta = z \to a \Rightarrow z \times a\)</span></li>
+<li>Counit: <span class="math inline">\(\epsilon = (a\Rightarrow b) \times a) \to b = eval\)</span></li>
+</ul>
+<h4 id="freeforgetful-adjunkce">Free/Forgetful adjunkce</h4>
+<p>Kategorie <span class="math inline">\(\textbf{Mon}\)</span> - objekty jsou monoidy, morfismy jsou homomorfismy mezi nimi. Mějme <span class="math inline">\(X \in O_{\textbf{Set}}\)</span> jako abecedu a <span class="math inline">\(F(X)\)</span> je monoid takový, že <span class="math inline">\(F(X) = (X^*, ++, ())\)</span>. <span class="math inline">\(X^*\)</span> je množina slov složených z prvků <span class="math inline">\(X\)</span> - například: <span class="math inline">\(w=(x1,x2,x3)\)</span>, <span class="math inline">\(u=(x1)\)</span>, <span class="math inline">\(z=()\)</span>. <span class="math inline">\(++\)</span> je operace zřetězení a <span class="math inline">\(()\)</span> je prázdné slovo.</p>
+<p>Pak <span class="math inline">\(F:\textbf{Set} \rightarrow \textbf{Mon}\)</span> je takový funktor, který pro každou množinu vybere monoid jí generovaný. Mějme funktor <span class="math inline">\(U:\textbf{Mon} \rightarrow \textbf{Set}\)</span>, který monoid namapuje na jeho množinu. <span class="math inline">\(X\)</span> je tedy generátor monoidu <span class="math inline">\(F(X)\)</span> a <span class="math inline">\(U(F(X))\)</span> namapuje <span class="math inline">\(X\)</span> na množinu generovanou <span class="math inline">\(X\)</span> a operací <span class="math inline">\(++\)</span>.</p>
+<p>Nyní můžeme definovat přirozenou transformaci <span class="math inline">\(\eta: Id_{\textbf{Set}} \Rightarrow U \circ F\)</span> takovou, že <span class="math inline">\(\eta_X(x) = (x)\)</span>. Nyní chceme ukázat, že pro libovolné f existuje právě jedno g takové, že následující daigram komutuje:</p>
+<p>Tedy chceme najít morfismus <span class="math inline">\(g\)</span> takový, že je homomorfismus mezi monoidy a zároveň splňuje rovnost: <span class="math inline">\(f(x)=U(g)(\eta_Xx) = U(g)((x))\)</span>.</p>
+<p>Takový morfismus <span class="math inline">\(g\)</span> je:</p>
+<ul>
+<li><span class="math inline">\(g(()) = id_M\)</span></li>
+<li><span class="math inline">\(g((x)) = f(x)\)</span></li>
+<li><span class="math inline">\(g((x1,x2,…,x_n ))=f(x1)f(x2)…f(x_n)\)</span></li>
+</ul></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>

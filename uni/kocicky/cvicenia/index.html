@@ -1,0 +1,47 @@
+<html><head><title></title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"></div><div id="main-body"><div id="title-nav"><h1></h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><h2 id="funktory-a-prirodzené-transformácie">2. Funktory a prirodzené transformácie</h2>
+<ol type="1">
+<li>Majme C, grupu reálnych čísel so sčítaním a D, monoid kladných reálnych čísel s násobením. Skúste si C a D nakresliť v podobe kategórií. Následne skúste nájsť dva funktory F: C →D a G : D → C také, že sú vzájomne inverzné. <a href="ex_01.html">riešenie</a></li>
+</ol>
+<h2 id="produkty-a-koprodukty">3. Produkty a koprodukty</h2>
+<ol type="1">
+<li>Vymyslete kandidáta na koprodukt Int a Bool jiný než Either a ukažte, že nemůže být lepší než Either, protože se dá najít víc než jeden morfizmus z vašeho kandidáta do Either.</li>
+<li>Ukažte, že následující datová struktura PreList je instancí bifunktoru. PreList je datová struktura odvozená od List, ve které byla rekurze nahrazena druhým typovým parametrem pro zjednodušení.</li>
+<li>Nechť <span class="math inline">\(\mathcal{C}\)</span> je kategorie a <span class="math inline">\(c\)</span> v ní libovolný objekt. Předpokládejme navíc, že pro libovolný další objekt <span class="math inline">\(d\)</span> existuje v <span class="math inline">\(\mathcal{C}\)</span> produkt <span class="math inline">\(c\times d\)</span>. Tímto způsobem jsme vytvořili přiřazení, které každému objektu z <span class="math inline">\(\mathcal{C}\)</span> přiřadí nějaký objekt z <span class="math inline">\(\mathcal{C}\)</span>. Vymyslete, jak toto zobrazení na objektech rozšířit na funktor. Najděte tedy způsob, jak pro každou šipku <span class="math inline">\(f\colon d\to d&#39;\)</span> najít šipku <span class="math inline">\(c\times f\colon c\times d\to c\times d&#39;\)</span>. Navíc ukažte, že toto přiřazení je funktoriální (tedy že zachovává kompozice a identity). Nezapomeňte, že v obecné kategorii je produkt definován pouze svou univerzální vlastností (první diagram třetího rozdavku)! Když to člověk dělá poprvé, tak je to spíš těžší cvičení, ale myslím, že pro pochopení základních kategoriálnách konceptů a způsobu uvažování je superužitečné. <em>Vitek</em></li>
+</ol>
+<h2 id="yoneda">4. Yoneda</h2>
+<ol type="1">
+<li><p>Mějme kategorii <strong>Grp</strong> (objekty := grupy, morfismy := homomorfismy) a zapomínající funktor <span class="math inline">\(U: Grp \to Set\)</span>, který grupu <span class="math inline">\(G\)</span> pošle na svoji nosnou množinu. Popiště přirozené transformace mezi hom-funktorem <span class="math inline">\(Grp(Z,-)\)</span> a <span class="math inline">\(U\)</span>. (Z jsou celá čísla se sčítáním)</p></li>
+<li><p>Mějme kategorii <strong>Cat</strong> (objekty := malé kategorie, morfismy := funktory). Mějme kategorie <strong>1</strong> (jediný objekt s id morfismem) a <strong>2</strong> (2 objekty a,b; morfismy id_a, id_b, a-&gt;b). Popiště přirozené transformace mezi <span class="math inline">\(Cat(1,-)\)</span> a <span class="math inline">\(Cat(2,-)\)</span>.</p></li>
+<li><p>V části <code>Yoneda in haskell</code> jsme si řekli, že <code>Reader a</code> se dá chápat jako hom-funktor <code>Set(a,-)</code>. Dále typ <code>List ()</code> se dá chápat jako reprezentace přirozených čísel. Jak můžeme vytvořit jinou reprezentaci přirozených čísel pomocí Yonedy a funktoru <code>List</code>?</p></li>
+</ol>
+<h2 id="ccc">5. CCC</h2>
+<ol type="1">
+<li><p>Mějme kategorii všech částečně uspořádaných množin, kde objekty jsou částečně uspořádané množiny a morfismy jsou monotónní zobrazení (<span class="math inline">\(f\)</span> je monotónní, pokud pro každé <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> platí, že pokud <span class="math inline">\(x \le y\)</span> pak <span class="math inline">\(f(x) \le f(y)\)</span>) Tato kategorie je CCC. Co jsou produkty, exponenciály a terminální objekt v této kategorii?</p></li>
+<li><p>Mějme kategorii <strong>Cat</strong>, kde objekty jsou malé kategorie a morfismy jsou funktory. Tato kategorie je CCC. Co jsou produkty, exponenciály a terminální objekt v této kategorii?</p></li>
+</ol>
+<h2 id="adjunkcie">6. Adjunkcie</h2>
+<ol type="1">
+<li><p>Mějme kategorie <span class="math inline">\(\textbf{Set}\)</span>, a <span class="math inline">\(\textbf{Vect}_R\)</span> (reálné vektorové prostory). Mějme funktor <span class="math inline">\(F: \textbf{Set} \rightarrow \textbf{Vect}_R\)</span> takový, že množinu <span class="math inline">\(S\)</span> namapuje na vektorový prostor s bází <span class="math inline">\(S\)</span>. Mějme funktor <span class="math inline">\(U: \textbf{Vect}_R \rightarrow \textbf{Set}\)</span> takový, že vektorový prostor namapuje na jeho množinu vektorů. Ukažte, že <span class="math inline">\(F\)</span> je levý adjunkt <span class="math inline">\(U\)</span> - například pomocí universal arrow adjunkce. <a href="https://www.math3ma.com/blog/what-is-an-adjunction-part-2">rozbor a riešenie</a></p></li>
+<li><p>Zkuste si pomocí adjunkcí zadefinovat produkt v kategorii. V Bartoszovi (knize, i přednáškách) je případně rozebrána část řešení pomocí <span class="math inline">\(HomSet\)</span> definice, ale přirozenost zobrazení mezi funktory nechal na čtenáři. Možná bude snazší použít Universal arrow definici. <a href="ex_0602_h1.html">hint 1</a> <a href="ex_0602_h2.html">hint 2</a></p></li>
+</ol>
+<h2 id="koprvoky">8. Koprvoky</h2>
+<ol type="1">
+<li><p>Ukažte, že pravidla pro haskellové monády odpovídají pravidlům pro skládání šipek v ko-Kleisliho kategoriích.</p></li>
+<li><p>Navrhněte dvě různé platné instance třídy Comonad pro stromy s libovolnou aritou: data Tree a = Node a [Tree a].</p></li>
+<li><p>Uvažme tuto implementaci zaveditelnou pro každý funktor:</p></li>
+</ol>
+<blockquote>
+<blockquote>
+<p><code>duplicate wx = fmap (λx → wx) wx.</code></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>Rozhodněte, zda může vést při vhodné implementaci extract taková implementace k platné komonádě</p>
+</blockquote>
+<blockquote>
+<ol type="a">
+<li>u funktoru Stream,</li>
+<li>u některého jiného funktoru,</li>
+<li>obecně u všech funktorů.</li>
+</ol>
+</blockquote></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>

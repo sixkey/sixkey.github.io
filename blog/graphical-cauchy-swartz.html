@@ -1,0 +1,14 @@
+<html><head><title>Graphical Cauchy-Swartz</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"><img src="/public/graph.png" id="title-image"></div><div id="main-body"><div id="title-nav"><h1>Graphical Cauchy-Swartz</h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><h2 id="partial-counts">Partial counts</h2>
+<p>Let <span class="math inline">\(G\)</span> be a graph together with an embedding into <span class="math inline">\(A\)</span>, i.e., an injective mapping which preserves both the edge and the non-edge relation. We say that such <span class="math inline">\(A\)</span> is <span class="math inline">\(G\)</span>-labeled. Recall that we denote by <span class="math inline">\(h(A, H)\)</span> the number of homomorphisms from <span class="math inline">\(A\)</span> to <span class="math inline">\(H\)</span> and compute it by</p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+    h(A, H) = \sum_{\varphi : VA \to VH}{\chi_{\varphi}(EA)},
+\end{aligned}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\chi_{\varphi}\)</span> is a function which returns 1 if the image of the edges under the input mapping map to edges of <span class="math inline">\(H\)</span> and 0 otherwise.</p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+    h(A, H) &amp;= \sum_{\varphi : VG \to VH}\chi_{\psi}(EG)\sum_{\psi : VA \to VH, \psi \ge \varphi}{\chi_{\varphi}(EA - EG)}, \\
+            &amp;= \sum_{\varphi : VG \to VH}\chi_{\psi}(EG)h_\psi(A - G, H)
+\end{aligned}
+\end{equation}\]</span></p></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>

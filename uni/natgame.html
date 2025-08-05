@@ -1,0 +1,132 @@
+<html><head><title>Pieskovisko: Prirodzené čísla</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"><img src="/public/nats.png" id="title-image"></div><div id="main-body"><div id="title-nav"><h1>Pieskovisko: Prirodzené čísla</h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><p>Tento príspevok slúži ako zbierka úloh na precvičenie induktívnych definíc a dôkazu indukciou. V cvičeniach si zadefinujeme prirodzené čísla, induktívne princípy na nich a postupne vybudujeme elemntárnu aritmetiku. Primárna motivácia pre voľbu týchto cvičení je jednoduchosť dokazovaných tvrdení a praktický nulové predpoklady na znalosť konkrétnych oblastí matematiky. Každý dôkaz by teda mať byť detailný a odkazovať buď na lokálne predpoklady alebo už dokázané lemmy a tvrdenia. Cvičenia sú okrem indukcie zamerané na schopnosť pracovať s lokálnym kontextom (správne chápanie toho čo vieme a čo chceme).</p>
+<h2 id="prirodzené-čísla">Prirodzené čísla</h2>
+<p>Uvážme, že máme prirodzené čísla induktívne definované následovne:</p>
+<span class="math display">\[\begin{aligned}
+    0 &amp;\in \mathbb{N}, \\
+    n &amp;\in \mathbb{N} \implies \text{s}(n) \in \mathbb{N}.
+\end{aligned}\]</span>
+<p>Potom každé prirodzené číslo <span class="math inline">\(n\)</span> má jednoznačné odvodenie v predošlých pravidlách a vyzerá následovne:</p>
+<p><span class="math display">\[
+    n = \underbrace{\text{s}(\text{s}(\text{s}(...(\text{s}}_{\text{$n$-krát}}(0))...))).
+\]</span></p>
+<p>Táto definícia je trocha naivná a neformálna, no pre potreby tohto cvičenia stačí. Konštanty definujeme prirodzene, no pamätajme, že je to len “skratka”. Čísla ako 1, 2 alebo 3 sú teda len mená, ktoré reprezentujú postupne <span class="math inline">\(\text{s}(0), \text{s}(\text{s}(0))\)</span> a <span class="math inline">\(\text{s}(\text{s}(\text{s}(0)))\)</span>.</p>
+<p>Na takto definovaných prirodzených číslach vieme induktívne definovať funkcie a to popisom výslednej hodnoty v <span class="math inline">\(0\)</span> (bázovom prvku) a hodnoty v <span class="math inline">\(\text{s}(n)\)</span> s prístupom k hodnote v <span class="math inline">\(n\)</span>. Takto definovaná funkcia <span class="math inline">\(f : \mathbb{N}\to \mathbb{N}\)</span> teda bude vyzerať následovne:</p>
+<span class="math display">\[\begin{aligned}
+    f(0) &amp;= \text{popis hodnoty v $0$} \\
+    f(\text{s}(n)) &amp;= \text{popis hodnoty v $\text{s}(n)$ s prístupom k $f(n)$}
+\end{aligned}\]</span>
+<p>napríklad pre</p>
+<strong>Definícia 0.1.</strong> Nech funkcia <span class="math inline">\(\text{double}: \mathbb{N}\to \mathbb{N}\)</span> je funkcia definovaná následovným induktívnym popisom:
+<span class="math display">\[\begin{aligned}
+    \text{double}(0) &amp;= 0 \\
+    \text{double}(\text{s}(n)) &amp;= \text{s}(\text{s}(\text{double}(n)))
+\end{aligned}\]</span>
+<p><strong>Definícia 0.2.</strong> Nech funkcia <span class="math inline">\(\text{quadruple}: \mathbb{N}\to \mathbb{N}\)</span> je funkcia definovaná následovným induktívnym popisom:</p>
+<span class="math display">\[\begin{aligned}
+    \text{quadruple}(0) &amp;= 0 \\
+    \text{quadruple}(\text{s}(n)) &amp;= \text{s}(\text{s}(\text{s}(\text{s}(\text{quadruple}(n)))))
+\end{aligned}\]</span>
+<p><strong>Kontrola 0.1</strong> Ako sa vyhodnotí <span class="math inline">\(\text{double}(2)\)</span>? Ako sa vyhodnotí <span class="math inline">\(\text{quadruple}(2)\)</span>?</p>
+<p>Tvrdenia o takýchto funkciách potom dokazujeme zväčša indukciou. V našom prípade (a aj obecne v induktívne definovaných štruktúrach) v takomto dôkaze dokazujeme tvrdenie pre všetky možné “hodnotové konštruktory”–v našom prípade konštanta <span class="math inline">\(0\)</span> a unárne <span class="math inline">\(\text{s}\)</span>–s tým, že o vnútorných hodnotách prijímame indukčný predpoklad. V našom prípade sa teda dá indukcia vyjadriť ako:</p>
+<p><span class="math display">\[
+    \Big[ \underbrace{\varphi(0)}_{\text{báza}}\land \underbrace{\forall k . \big( \varphi( k ) \implies \varphi( s( k ) ) \big)}_{\text{indukčný krok}} \Big] \iff \Big( \forall n . \varphi( n ) \Big)
+\]</span></p>
+<p>Všimnime si podobnosť so samotnou induktívnou definíciou prirodzených čísel. Ilustrujme takýto dôkaz na nasledujúcom tvrdení.</p>
+<p><strong>Tvrdenie 0.1</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí <span class="math inline">\(\text{double}(\text{double}(n)) = \text{quadruple}(n)\)</span>.</p>
+<blockquote>
+<p><em>Dôkaz</em>: Indukciou voči <span class="math inline">\(n\)</span>:</p>
+</blockquote>
+<blockquote>
+<ol type="1">
+<li>Báza: Nech teda <span class="math inline">\(n = 0\)</span>. Z definíce funkcie <span class="math inline">\(\text{double}\)</span> a <span class="math inline">\(\text{quadruple}\)</span> dostávame nasledujúce rovnosti</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[\text{double}(\text{double}(0)) \doteq \text{double}(0) \doteq 0 \doteq \text{quadruple}(0).\]</span></p>
+</blockquote>
+<blockquote>
+<ol start="2" type="1">
+<li>Indukčný krok: Nech <span class="math inline">\(k \in \mathbb{N}\)</span> je ľubovoľné také, že <span class="math inline">\(\text{double}(\text{double}(k)) = \text{quadruple}(k)\)</span>. Treba ukázať, že <span class="math inline">\(\text{double}(\text{double}(s(k))) = \text{quadruple}(s(k))\)</span>. Potom ale
+<span class="math display">\[\begin{aligned}
+\text{double}(\text{double}(s(k))) &amp;\doteq \text{double}(\text{s}(\text{s}(\text{double}(k)))) \\
+&amp;\doteq \text{s}(\text{s}(\text{double}(\text{s}(\text{double}(k))))) \\
+&amp;\doteq \text{s}(\text{s}(\text{s}(\text{s}(\text{double}(\text{double}(k)))))) \\
+&amp;\overset{\small IP}{=}\text{s}(\text{s}(\text{s}(\text{s}(\text{quadruple}(k))))) \\
+&amp;\doteq \text{quadruple}(s(k)).
+\end{aligned}\]</span></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>Z indukcie teda plynie originálne tvrdenie. <span class="math inline">\(\square\)</span></p>
+</blockquote>
+<p>V našom dôkaze sme rovnosti označovali <span class="math inline">\(\doteq\)</span> v prípade, že plynú z definície, <span class="math inline">\(\overset{\small IP}{=}\)</span> v prípade, že plynú z induktívneho predpokladu. Posledný typ rovností, ktoré v tomto dokumente môžeme (a budeme) potrebovať, je odvolávanie na už dokázané tvrdenia a rôzne predpoklady. V každom dôkaze by ste pri každej rovnosti mali byť schopní ukázať na definíciu, lemmu, tvrdenie alebo predpoklad, z ktorého táto rovnosť <em>priamo</em> plynie.</p>
+<p>Napríklad v predošlom dôkaze</p>
+<ol type="1">
+<li><p>rovnosť vyplýva z definície <span class="math inline">\(\text{double}\)</span> aplikovaného na <span class="math inline">\(\text{s}(k)\)</span>, teda <span class="math inline">\(\text{double}(\text{s}(k)) = \text{s}(\text{s}(\text{double}(k)))\)</span>,</p></li>
+<li><p>rovnosť vyplýva z definície <span class="math inline">\(\text{double}\)</span> aplikovaného na <span class="math inline">\(\text{s}(\text{s}(\text{double}(k)))\)</span>, teda <span class="math inline">\(\text{double}(\text{s}(\text{s}(\text{double}(k)))) = \text{s}(\text{s}(\text{double}(\text{s}(\text{double}(k)))))\)</span>,</p></li>
+<li><p>rovnosť vyplýva z definície <span class="math inline">\(\text{double}\)</span> aplikovaného na <span class="math inline">\(\text{s}(\text{double}(k))\)</span>, teda <span class="math inline">\(\text{double}(\text{s}(\text{double}(k))) = \text{s}(\text{s}(\text{double}(\text{double}(k))))\)</span>,</p></li>
+<li><p>rovnosť vyplýva z indučného predpokladu, podľa ktorého <span class="math inline">\(\text{double}(\text{double}(k)) = \text{quadruple}(k)\)</span>,</p></li>
+<li><p>rovnosť vyplýva z definície <span class="math inline">\(\text{quadruple}\)</span> aplikovaného na <span class="math inline">\(\text{s}(k)\)</span>, teda <span class="math inline">\(\text{quadruple}(\text{s}(k)) = \text{s}(\text{s}(\text{s}(\text{s}(\text{quadruple}(k)))))\)</span>.</p></li>
+</ol>
+<p>V niektorých tvrdeniach však netreba indukciu.</p>
+<p><strong>Tvrdenie 0.2</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí <span class="math inline">\(\text{double}(\text{double}(\text{double}(\text{double}(n))))\)</span> = <span class="math inline">\(\text{quadruple}(\text{quadruple}(n))\)</span>.</p>
+<blockquote>
+<p><em>Dôkaz.</em> Nech <span class="math inline">\(n \in \mathbb{N}\)</span> je ľubovoľné, naďalej pevné. Potom z Tvrdenia 0.1 aplikovaného na <span class="math inline">\(n\)</span> vieme, že <span class="math inline">\(\text{double}(\text{double}(n)) = \text{quadruple}(n)\)</span> a teda</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[\begin{equation}
+\text{double}(\text{double}(\text{double}(\text{double}(n)))) = \text{double}(\text{double}(\text{quadruple}(n)))
+\end{equation}\]</span></p>
+</blockquote>
+<blockquote>
+<p>Potom ale z Tvrdenia 0.1 aplikovaného na <span class="math inline">\(\text{quadruple}(n)\)</span> vieme, že <span class="math inline">\(\text{double}(\text{double}(\text{quadruple}(n))) = \text{quadruple}(\text{quadruple}(n))\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(\square\)</span></p>
+</blockquote>
+<h2 id="sčítanie">Sčítanie</h2>
+<p>Na úvod začneme definíciou sčítania a dokázaním jeho vlastností.</p>
+<p><strong>Definícia 1.</strong> Pre pevné <span class="math inline">\(a \in \mathbb{N}\)</span> definujte induktívne funkciu <span class="math inline">\(\text{add}_a : \mathbb{N}\to \mathbb{N}\)</span>, ktorá sa bude chovať ako pričítanie <span class="math inline">\(a\)</span>; <span class="math inline">\(\text{add}_a(n)\)</span> by teda malo byť číslo reprezentujúce súčet <span class="math inline">\(n\)</span> a <span class="math inline">\(a\)</span>.<span class="math inline">\(^{★}\)</span></p>
+<p><strong>Notácia 1.</strong> Definujeme operátor <span class="math inline">\(+\)</span> následovne: <span class="math inline">\((b + a) := \text{add}_a(b)\)</span>.</p>
+<p><em>Pri notácii nemusíte nič robiť. Treba si len vždy rozmyslieť, na ktorej strane je ktoré číslo. Uvedomte si, že podobne ako pri konštantách, by sme sa bez nich zaobišli.</em></p>
+<p>Uvedomte si, že sme si asociativitu operátoru <span class="math inline">\(+\)</span> nedefinovali, teda nemôžeme mať výraz, kde by boli zátvorky implicitné; napr. <span class="math inline">\(1 + 2 + 3\)</span>. Štandardne by sme všade mali písať okolo <span class="math inline">\(+\)</span> zátvorky. V záujme čitateľnosti budeme ale najvonkajší pár zátvoriek vynechávať, teda <span class="math inline">\(1 + 2\)</span> chápeme ako <span class="math inline">\((1 + 2)\)</span>. Pri <span class="math inline">\(1 + 2 + 3\)</span> ale musíme určiť zátvorky, napr. <span class="math inline">\((1 + 2) + 3\)</span> alebo <span class="math inline">\(1 + (2 + 3)\)</span>. V tento moment nevieme, že v obecnosti sú tieto dve možnosti ekvivalentné. Zároveň nevieme, že je tento operátor komutatívny, teda že v obecnosti platí <span class="math inline">\(a + b = b + a\)</span>. Aj napriek tomu, že používame štandardný symbol +, <em>nevieme</em> aké ma chovanie. Tento operátor totiž vznikol dva paragrafy vyššie a vnútri sa odvoláva na <em>vašu</em> (potencionálne nesprávnu) definíciu (napr. takú, ktorá v skutočnosti ráta odčítanie). O týchto vlastnostiach sa ale presvedčíme vo zvyšku tejto sekcie. V procese dokazovania budete musieť pracovať so svojou definíciou podobne ako sme v Tvrdení 0.1 pracovali s definíciou funkcií <span class="math inline">\(\text{double}\)</span> a <span class="math inline">\(\text{quadruple}\)</span>.</p>
+<p>Dobrý nápad je urobiť si nasledujúcu kontrolu.</p>
+<p><strong>Kontrola 1.</strong> Vyhodnoťte nasledujúce výrazy: <span class="math inline">\(0 + 3\)</span>, <span class="math inline">\(3 + 0\)</span>, <span class="math inline">\(2 + 2\)</span>. Chová sa vaša definícia správne? (výraz <em><span class="math inline">\(0 + 3\)</span> je “len skratka”, je teda definične rovný <span class="math inline">\(\text{add}_{\text{s}(\text{s}(\text{s}(0)))}(0)\)</span>, no nie <span class="math inline">\(\text{add}_0(\text{s}(\text{s}(\text{s}(0))))\)</span>; na poradí záleží</em>).</p>
+<p>V tento moment sme si definovali sčítanie prirodzených čísel. Je ale zjavné¸ že definícia tohto sčítania je nesymetrická (viď proces vyhodnocovania <span class="math inline">\(0 + 3\)</span> a <span class="math inline">\(3 + 0\)</span>). Tento fakt budú demonštrovať aj rozdiely v obtiažnosti dôkazov nasledujúcich, zdanlivo podobných, tvrdení. <em>Hint: Potrebujem pri všetkých použiť indukciu? Nie sú niektoré rovnosti len definície? Rozpíšte si výraz <span class="math inline">\(b + a\)</span> do podoby <span class="math inline">\(\text{add}_a(b)\)</span>. V prípade, že neviete ako začať, inšpirujte sa dôkazom Tvrdenia 0.1.</em></p>
+<p><em>Úlohy majú hodnotenie obtiažnosti značené: <span class="math inline">\(^{★}\)</span>, <span class="math inline">\(^{★★}\)</span> alebo <span class="math inline">\(^{★★★}\)</span>. Táto obtiažnosť je ale orientačná. Môže sa vám kľudne stať, že <span class="math inline">\(^{★★★}\)</span> bude jednoduchšie ako <span class="math inline">\(^{★}\)</span></em>.</p>
+<p><strong>Lemma 1.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(0 + n = n\)</span>. <span class="math inline">\(^{★}\)</span></p>
+<p><strong>Lemma 2.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(n + 0 = n\)</span>. <span class="math inline">\(^{★}\)</span></p>
+<p><strong>Lemma 3.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(1 + n = s(n)\)</span>. <span class="math inline">\(^{★}\)</span></p>
+<p><strong>Lemma 4.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(n + 1 = s(n)\)</span>. <span class="math inline">\(^{★}\)</span></p>
+<p>V nasledujúcich dvoch tvrdeniach si môžete zvoliť parameter, voči ktorému budete robiť indukciu. Indukcia sa dá “vrstviť”, teda môžete napríklad robiť indukciu voči <span class="math inline">\(m\)</span> v indukčnom kroku indukcie voči <span class="math inline">\(n\)</span>. V týchto príkladoch to ale netreba. Veďte teda indukciu buď voči <span class="math inline">\(m\)</span>, alebo <span class="math inline">\(n\)</span>. <em>Hint: v tomto bode sa môže oplatiť použiť predošlé lemmy.</em></p>
+<p><strong>Lemma 5.</strong> Pre všetky <span class="math inline">\(n, m \in \mathbb{N}\)</span> platí, že <span class="math inline">\(s(m + n) = s(m) + n\)</span>. <span class="math inline">\(^{★}\)</span></p>
+<p><strong>Lemma 6.</strong> Pre všetky <span class="math inline">\(n, m \in \mathbb{N}\)</span> platí, že <span class="math inline">\(s(m + n) = m + s(n)\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Lemma 7.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(n + n = \text{double}(n)\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p>Teraz sa presunieme k známym vlastnostiam komitativity a asociativity. <em>Hint: hore uvedené tvrdenia sa v nasledujúcich dôkazoch môžu hodiť. Ak sa teda zaseknete, pozrite sa čo už viete.</em></p>
+<p><strong>Tvrdenie 1.</strong> Pre všetky <span class="math inline">\(m, n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(m + n = n + m\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Tvrdenie 2.</strong> Pre všetky <span class="math inline">\(m, n, l \in \mathbb{N}\)</span> platí, že <span class="math inline">\(m + ( n + l ) = ( m + n ) + l\)</span>. <span class="math inline">\(^{★★★}\)</span></p>
+<p><em>Dávajte si pozor, že ste v dôkaze predošlého cvičenia neurobili chybu <span class="math inline">\(\text{s}(a + b) + c = \text{s}( a + b + c)\)</span>, na ľavú stranu totiž ide celý výraz v zátvorke a teda <span class="math inline">\(\text{s}(a + b) + c = \text{s}((a + b) + c)\)</span>. Spomeňte si na komentár ohľadom zátvorkovania</em>.</p>
+<h2 id="násobenie">Násobenie</h2>
+<p><strong>Definícia 2.</strong> Pre pevné <span class="math inline">\(a \in \mathbb{N}\)</span> definujte induktívne funkciu <span class="math inline">\(\text{mul}_a : \mathbb{N}\to \mathbb{N}\)</span>, ktorá sa bude chovať ako vynásobenie číslom <span class="math inline">\(a\)</span>; <span class="math inline">\(\text{mul}_a(n)\)</span> by teda malo byť číslo reprezentujúce súčin čísel <span class="math inline">\(n\)</span> a <span class="math inline">\(a\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Notácia 2.</strong> Definujeme operátor <span class="math inline">\(\cdot\)</span> následovne: <span class="math inline">\((b \cdot a) := \text{mul}_a(b)\)</span>.</p>
+<p>Situácia s zátvorkami, asociativitou a komutativitou je podobná ako pri <span class="math inline">\(+\)</span>.</p>
+<p><strong>Kontrola 2.</strong> Vyhodnoťte nasledujúce výrazy: <span class="math inline">\(0 \cdot 3\)</span>, <span class="math inline">\(3 \cdot 1\)</span>, <span class="math inline">\(2 \cdot 2\)</span>. Chová sa vaša definícia správne?</p>
+<p>Podobne ako v prípade sčítania je táto definícia silne nesymetrická. <em>Hint: aspoň v pár prikládoch si rozpíšte <span class="math inline">\(b \cdot a\)</span> ako <span class="math inline">\(\text{mul}_a(b)\)</span>.</em></p>
+<p><strong>Lemma 8.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(0 \cdot n = 0\)</span>. <span class="math inline">\(^{★}\)</span></p>
+<p><strong>Lemma 9.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(n \cdot 0 = 0\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Lemma 10.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(1 \cdot n = n\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Lemma 11.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(n \cdot 1 = n\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Lemma 12.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(s(m) \cdot n = ( m \cdot n ) + n\)</span>. <span class="math inline">\(^{★}\)</span></p>
+<p>Nasledujúce cvičenia sú koncepčne jednoduché, no treba si dať pozor na korektnosť úprav. Pri každej rovnosti si rozmyslite, z ktorého tvrdenia plynie.</p>
+<p><strong>Lemma 13.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(m \cdot s(n) = m + ( m \cdot n )\)</span>. <span class="math inline">\(^{★★★}\)</span></p>
+<p><strong>Lemma 14.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(2 \cdot n = n + n\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Lemma 15.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(n \cdot 2 = n + n\)</span>. <span class="math inline">\(^{★★★}\)</span></p>
+<p><em>Hint: Pre nasledujúcu lemmu existuje veľmi krátky argument.</em></p>
+<p><strong>Lemma 16.</strong> Pre všetky <span class="math inline">\(n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(2 \cdot n = \text{double}(n)\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p>A teraz už známe tvrdenia distributivity, asociativity a komutativity.</p>
+<p><strong>Tvrdenie 3.</strong> Pre všetky <span class="math inline">\(m, n, l \in \mathbb{N}\)</span> platí, že <span class="math inline">\(l\cdot( m + n ) = l \cdot m + l \cdot n\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Tvrdenie 4.</strong> Pre všetky <span class="math inline">\(m, n, l \in \mathbb{N}\)</span> platí, že <span class="math inline">\(( m + n )\cdot l = m \cdot l + n \cdot l\)</span>. <span class="math inline">\(^{★★}\)</span></p>
+<p><strong>Tvrdenie 5.</strong> Pre všetky <span class="math inline">\(m, n \in \mathbb{N}\)</span> platí, že <span class="math inline">\(m \cdot n = n \cdot m\)</span>. <span class="math inline">\(^{★★★}\)</span></p>
+<p><strong>Tvrdenie 6.</strong> Pre všetky <span class="math inline">\(m, n, l \in \mathbb{N}\)</span> platí, že <span class="math inline">\(m \cdot ( n \cdot l ) = ( m \cdot n ) \cdot l\)</span>. <span class="math inline">\(^{★★★}\)</span></p>
+<h2 id="fin.">Fin.</h2>
+<p>Tento príspevok je inšpirovaný <a href="https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/">The Natural Number Game</a>, v ktorom sa tieto tvrdenia dokazujú v <a href="https://lean-lang.org/">Lean</a>. Alternatíva, ktorá avšak presahuje tento príspevok je napríklad <a href="https://softwarefoundations.cis.upenn.edu/lf-current/index.html">Logical Foundations</a>, ktorá približuje dokazovanie v nástroji <a href="https://coq.inria.fr/">Coq</a>.</p></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>
