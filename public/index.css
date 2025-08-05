@@ -11,6 +11,12 @@ html, body
     font-size: 1.1em;
 }
 
+h2
+{
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
 #root
 {
     position: absolute;
@@ -54,6 +60,7 @@ p
 {
     padding: 0px;
     margin: 0px;
+    margin-bottom:1em;
     display: flex;
     gap: 0.8em;
     list-style-type: none;
@@ -80,6 +87,12 @@ a
 {
     padding-bottom: 0px;
     margin-bottom: 0px;
+}
+
+h1
+{
+    margin-top: 2em;
+    margin-bottom: 1em;
 }
 
 .quote 
@@ -234,10 +247,17 @@ footer
     padding-right: 0.5em;
 }
 
+.img-container
+{
+    width:100%;
+    display:flex;
+}
+
 .me-pic
 {
-    width: 100%;
+    height:22em;
 }
+
 
 #deck
 {
@@ -273,4 +293,11 @@ footer
 .card-hide 
 {
     opacity: 0;
+}
+
+@media screen and (max-width: 1200px) {
+    .me-pic{
+        margin:auto;
+        margin-bottom: 3em;
+    }
 }

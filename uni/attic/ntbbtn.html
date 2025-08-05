@@ -1,4 +1,4 @@
-<html><head><title>Riešenie nat_to_bin a bin_to_nat.</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://livejs.com/live.js"></script><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"><img src="/public/cock.png" id="title-image"></div><div id="main-body"><div id="title-nav"><h1>Riešenie nat_to_bin a bin_to_nat.</h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li><li><a href="/misc">misc</a></li></ul></div><pre class="coq"><code>Fixpoint nat_to_bin ( n : nat ) : bin := 
+<html><head><title>Riešenie nat_to_bin a bin_to_nat.</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="/public/bootstrap.min.css"><link rel="stylesheet" href="/public/index.css"></head><body><div id="root"><div id="content-root"><div id="left-wing"><img src="/public/cock.png" id="title-image"></div><div id="main-body"><div id="title-nav"><h1>Riešenie nat_to_bin a bin_to_nat.</h1><ul id="nav"><li><a href="/">xkucerak</a></li><li><a href="/uni">uni</a></li><li><a href="/blog">blog</a></li></ul></div><pre class="coq"><code>Fixpoint nat_to_bin ( n : nat ) : bin := 
   match n with 
   | O =&gt; Z 
   | S n =&gt; incr ( nat_to_bin n )
@@ -9,4 +9,4 @@ Fixpoint bin_to_nat (m:bin) : nat :=
   | B0 b =&gt; 2 * bin_to_nat b
   | B1 b =&gt; 1 + 2 * bin_to_nat b
   | Z =&gt; 0
-  end.</code></pre></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>
+  end.</code></pre></div></div><footer><div class="footer-text"><div>made with ❤️ in Brno and Leipzig</div><div><a href="https://github.com/sixkey/yabg">github</a></div></div></footer></div></body></html>
