@@ -167,6 +167,11 @@ h1
     font-style: italic;
 }
 
+.contact
+{
+    margin-top: 2.5em;
+}
+
 @media screen and (max-width: 70rem) {
   #main-body {
       width: 75%;
