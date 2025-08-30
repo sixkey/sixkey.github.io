@@ -229,6 +229,15 @@ footer
     width: 100%;
     position: absolute;
     bottom: 0px;
+    justify-content: space-between;
+    display: flex;
+}
+
+.footer-name
+{
+    padding-left: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .footer-text 
